@@ -10,5 +10,5 @@ message_reconnect: dict = {
     "body": "Some body",
 }
 
-recipients = [os.environ["RECIPIENT"]]
-email_console: bool = True
+recipients = os.environ["RECIPIENT"].split(",")
+email_enabled: bool = True if os.environ["EMAIL_ENABLED"] else False

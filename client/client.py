@@ -6,7 +6,7 @@ import time
 
 
 async def ping():
-    uri = f"ws://{os.environ['SERVER_HOST']}/ws/{os.environ['CLIENT_ID']}"
+    uri = f"wss://{os.environ['SERVER_HOST']}/ws/{os.environ['CLIENT_ID']}"
     async with websockets.connect(
         uri,
     ) as websocket:

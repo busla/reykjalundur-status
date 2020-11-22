@@ -1,0 +1,33 @@
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.container > div {
+  max-width: 50%;
+  margin-top: 20px;
+}
+.container > p {
+  max-width: 50%;
+  margin-top: 20px;
+}
+#time {
+  font-weight: bolder;
+  font-size: 3em;
+  text-align: center;
+}
+.fas {
+  font-size: 200px;
+}
+.fa-thumbs-up {
+  color: rgb(40, 167, 69);
+}
+
+.fa-thumbs-down {
+  color: rgb(220, 53, 69);
+}

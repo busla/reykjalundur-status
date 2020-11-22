@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "reykjalundur-status"
+version = "0.1.0"
+description = "Is Reykjalundur awake?"
+authors = ["Jón Levy <jon.levy@ruv.is>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+fastapi = "^0.61.2"
+uvicorn = "^0.12.2"
+websockets = "^8.1"
+aiofiles = "^0.6.0"
+Jinja2 = "^2.11.2"
+requests = "^2.25.0"
+fastapi-mail = "^0.3.0"
+
+[tool.poetry.dev-dependencies]
+pylint = "^2.6.0"
+black = "^20.8b1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

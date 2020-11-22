@@ -23,8 +23,8 @@ from reykjalundur.common.config import message_disconnect, message_reconnect
 from .common import email
 
 app = FastAPI()
-app.mount("/static", StaticFiles(directory="reykjalundur/static"), name="static")
-templates = Jinja2Templates(directory="reykjalundur/templates")
+app.mount("/static", StaticFiles(directory="server/reykjalundur/static"), name="static")
+templates = Jinja2Templates(directory="server/reykjalundur/templates")
 logging.basicConfig(level=logging.DEBUG)
 
 

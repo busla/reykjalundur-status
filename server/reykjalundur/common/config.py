@@ -1,4 +1,5 @@
 import os
+from typing import List
 
 message_disconnect: dict = {
     "subject": "Some subject",
@@ -10,5 +11,5 @@ message_reconnect: dict = {
     "body": "Some body",
 }
 
-recipients = os.environ["RECIPIENT"].split(",")
-email_enabled: bool = True if os.environ["EMAIL_ENABLED"] else False
+recipients: List[str] = []
+email_enabled: bool = False

@@ -1,10 +1,12 @@
 import os
+import logging
 from datetime import datetime
 from typing import List, Union
 from reykjalundur.common.config import email_enabled
 from fastapi_mail import FastMail, MessageSchema, ConnectionConfig
 from .models import EmailMessage, SocketResponse
 
+logger = logging.getLogger(__name__)
 conf = ConnectionConfig(
     MAIL_USERNAME=os.environ["MAIL_USER"],
     MAIL_PASSWORD=os.environ["MAIL_PASSWORD"],
@@ -26,10 +28,9 @@ async def send_mail(message: EmailMessage) -> SocketResponse:
     )
 
     fm = FastMail(conf)
-    if not email_enabled:
+    if email_enabled:
         await fm.send_message(data)
-    else:
-        print(data.dict())
+    logger.debug(data.dict())
     return SocketResponse(
         **{
             "message": "email has been sent",

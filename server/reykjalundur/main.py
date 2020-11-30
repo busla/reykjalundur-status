@@ -20,7 +20,7 @@ from reykjalundur.common.models import (
     SocketResponse,
 )
 from reykjalundur.common.config import message_disconnect, message_reconnect
-from .common import email
+from reykjalundur.common.email import send_mail
 
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="server/reykjalundur/static"), name="static")
@@ -61,7 +61,7 @@ async def home(request: Request):
 async def websocket_endpoint(websocket: WebSocket, client_id: str):
     await manager.connect(websocket)
     if client_id == os.environ["CLIENT_ID"]:
-        await email.send_mail(EmailMessage(**message_reconnect))
+        await send_mail(EmailMessage(**message_reconnect))
     try:
         while True:
             await websocket.receive_text()
@@ -84,4 +84,4 @@ async def websocket_endpoint(websocket: WebSocket, client_id: str):
             }
         )
         await manager.broadcast(payload.json())
-        await email.send_mail(EmailMessage(**message_disconnect))
+        await send_mail(EmailMessage(**message_disconnect))

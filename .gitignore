@@ -3,5 +3,3 @@ __pycache__
 .python-version
 .env
 *.log
-server/reykjalundur/common/*config*.py
-!server/reykjalundur/common/config.py

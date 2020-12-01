@@ -19,7 +19,7 @@ from reykjalundur.common.models import (
     EmailMessage,
     SocketResponse,
 )
-from reykjalundur.common.config import message_disconnect, message_reconnect
+from reykjalundur.settings import settings
 from reykjalundur.common.email import send_mail
 
 app = FastAPI()
@@ -61,7 +61,7 @@ async def home(request: Request):
 async def websocket_endpoint(websocket: WebSocket, client_id: str):
     await manager.connect(websocket)
     if client_id == os.environ["CLIENT_ID"]:
-        await send_mail(EmailMessage(**message_reconnect))
+        await send_mail(EmailMessage(**settings.message_reconnect))
     try:
         while True:
             await websocket.receive_text()
@@ -84,4 +84,4 @@ async def websocket_endpoint(websocket: WebSocket, client_id: str):
             }
         )
         await manager.broadcast(payload.json())
-        await send_mail(EmailMessage(**message_disconnect))
+        await send_mail(EmailMessage(**settings.message_disconnect))

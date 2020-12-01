@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import List, Optional
 from pydantic import BaseModel, EmailStr, root_validator
-from reykjalundur.common.config import recipients
+from reykjalundur import settings
 
 datetime_fmt = "%A %d. %b %H:%M:%S"
 datetime_encoder = {
@@ -17,7 +17,7 @@ class EmailMessage(BaseModel):
     subject: str
     body: str
     current_time: Optional[datetime]
-    recipients: EmailSchema = EmailSchema(email=recipients)
+    recipients: EmailSchema = EmailSchema(email=settings.recipients)
 
     class Config:
         json_encoders = datetime_encoder

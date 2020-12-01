@@ -2,7 +2,7 @@ import os
 import logging
 from datetime import datetime
 from typing import List, Union
-from reykjalundur.common.config import email_enabled
+from reykjalundur import settings
 from fastapi_mail import FastMail, MessageSchema, ConnectionConfig
 from .models import EmailMessage, SocketResponse
 
@@ -28,7 +28,7 @@ async def send_mail(message: EmailMessage) -> SocketResponse:
     )
 
     fm = FastMail(conf)
-    if email_enabled:
+    if settings.email_enabled:
         await fm.send_message(data)
     logger.debug(data.dict())
     return SocketResponse(

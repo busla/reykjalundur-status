@@ -3,10 +3,11 @@ import json
 import asyncio
 import websockets
 import time
+from .config import schema
 
 
 async def ping():
-    uri = f"wss://{os.environ['SERVER_HOST']}/ws/{os.environ['CLIENT_ID']}"
+    uri = f"{schema}://{os.environ['SERVER_HOST']}/ws/{os.environ['CLIENT_ID']}"
     async with websockets.connect(
         uri,
     ) as websocket:
